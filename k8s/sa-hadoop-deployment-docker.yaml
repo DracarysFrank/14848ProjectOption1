@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sa-hadoop
+  labels:
+    app: sa-hadoop
+spec:
+  selector:
+     matchLabels:
+       app: sa-hadoop
+  replicas: 1
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1 
+  template:
+    metadata:
+      labels:
+        app: sa-hadoop
+    spec:
+      containers:
+          - image: zyh6158/hadoopcluster
+            imagePullPolicy: Always
+            name: sa-hadoop-docker-ima
+            ports:
+              - containerPort: 9870
+            securityContext:
+              privileged: true
