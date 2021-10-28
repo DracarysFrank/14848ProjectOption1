@@ -1,6 +1,5 @@
 FROM docker:dind
 COPY . /
-WORKDIR / 
-RUN chmod +x ./loadfile.sh
+WORKDIR /docker-multinode-hadoop
 
-EXPOSE 9870
+EXPOSE 50070
